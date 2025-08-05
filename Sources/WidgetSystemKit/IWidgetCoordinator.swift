@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 import Combine
 
-public protocol IWidgetSystemManager<WidgetId, WidgetEvent>: ObservableObject {
+public protocol IWidgetCoordinator<WidgetId, WidgetEvent>: ObservableObject {
     associatedtype WidgetId: Hashable
     associatedtype WidgetEvent: Hashable
     
@@ -18,44 +18,41 @@ public protocol IWidgetSystemManager<WidgetId, WidgetEvent>: ObservableObject {
     func subscribeToWidgetEvents(_ subscriber: any IWidgetEventSubscriber<AnyWidget<WidgetId, WidgetEvent>>)
 }
 
-public final class WidgetSystemManager<WidgetId: Hashable, WidgetEvent: Hashable>: IWidgetSystemManager {
+public final class WidgetCoordinator<WidgetId: Hashable, WidgetEvent: Hashable>: IWidgetCoordinator {
     @Published public private(set) var widgets: [AnyWidget<WidgetId, WidgetEvent>] = []
-    @Published public private(set) var widgetStates: [WidgetId: WidgetState] = [:]
-        
+            
     public init() {}
+    
+    public func refreshWidgets(_ widgets: [AnyWidget<WidgetId, WidgetEvent>]) {
+        self.widgets = widgets
+    }
     
     public func addWidget(_ widget: AnyWidget<WidgetId, WidgetEvent>) {
         widgets.append(widget)
-        widgetStates[widget.widgetId] = widget.widgetState
     }
     
     public func removeWidget(_ widgetId: WidgetId) {
         widgets.removeAll { $0.widgetId == widgetId }
-        widgetStates.removeValue(forKey: widgetId)
     }
     
     public func showWidget(_ widgetId: WidgetId) {
-        widgetStates[widgetId] = .visible
         updateWidgetState(widgetId, state: .visible)
     }
     
     public func hideWidget(_ widgetId: WidgetId) {
-        widgetStates[widgetId] = .hidden
         updateWidgetState(widgetId, state: .hidden)
     }
     
     public func disableWidget(_ widgetId: WidgetId) {
-        widgetStates[widgetId] = .disable
         updateWidgetState(widgetId, state: .disable)
     }
     
     public func enableWidget(_ widgetId: WidgetId) {
-        widgetStates[widgetId] = .visible
         updateWidgetState(widgetId, state: .visible)
     }
     
     public func widgetState(_ widgetId: WidgetId) -> WidgetState {
-        widgetStates[widgetId] ?? .visible
+        widgets.first(where: { $0.widgetId == widgetId })?.widgetState ?? .visible
     }
     
     public func subscribeToWidgetEvents(_ subscriber: any IWidgetEventSubscriber<AnyWidget<WidgetId, WidgetEvent>>) {
