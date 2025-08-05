@@ -458,10 +458,10 @@ dependencies: [
 
 ## Requirements
 
-- iOS 14.0+
-- Swift 5.5+
-- Xcode 13.0+
+- iOS 16.0+
+- Swift 6.0+
+- Xcode 15.0+
 
 ## License
 
-MIT License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
