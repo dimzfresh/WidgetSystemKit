@@ -8,6 +8,14 @@ document.addEventListener('DOMContentLoaded', function() {
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
     }
     
     // Close mobile menu when clicking on a link
@@ -18,18 +26,34 @@ document.addEventListener('DOMContentLoaded', function() {
             navMenu.classList.remove('active');
         });
     });
+    
+    // Add keyboard support for mobile menu
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    });
 });
 
 // Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const href = this.getAttribute('href');
+        const target = document.querySelector(href);
+        
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+            // Add offset for fixed navbar
+            const navbarHeight = document.querySelector('.navbar').offsetHeight;
+            const targetPosition = target.offsetTop - navbarHeight - 20;
+            
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
             });
+        } else {
+            console.warn(`Target element not found: ${href}`);
         }
     });
 });
@@ -105,7 +129,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const widgetItems = document.querySelectorAll('.widget-item');
     
     widgetItems.forEach(item => {
-        item.addEventListener('click', function() {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            
             // Add click animation
             this.style.transform = 'scale(0.95)';
             setTimeout(() => {
@@ -132,6 +158,38 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 ripple.remove();
             }, 600);
+        });
+        
+        // Add keyboard support
+        item.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
+            }
+        });
+        
+        // Make items focusable
+        item.setAttribute('tabindex', '0');
+        item.setAttribute('role', 'button');
+    });
+});
+
+// Add error handling for all buttons
+document.addEventListener('DOMContentLoaded', function() {
+    const buttons = document.querySelectorAll('.btn, .widget-item');
+    
+    buttons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            // Prevent default only for internal links
+            if (this.getAttribute('href') && this.getAttribute('href').startsWith('#')) {
+                e.preventDefault();
+            }
+            
+            // Add click feedback
+            this.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
         });
     });
 });
