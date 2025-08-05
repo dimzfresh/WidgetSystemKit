@@ -2,6 +2,8 @@
 
 A SwiftUI widget system for building modular, reusable UI components with event-driven communication and state management.
 
+🌐 **[Visit the Website](https://dimzfresh.github.io/WidgetSystemKit)** - Interactive documentation and examples
+
 ## Features
 
 - **Modular Widget Architecture** - Create reusable widgets with encapsulated state and behavior
@@ -455,6 +457,8 @@ dependencies: [
     .package(url: "https://github.com/dimzfresh/WidgetSystemKit.git", from: "1.0.0")
 ]
 ```
+
+📖 **Documentation**: [Visit our website](https://dimzfresh.github.io/WidgetSystemKit) for interactive examples and detailed documentation.
 
 ## Requirements
 

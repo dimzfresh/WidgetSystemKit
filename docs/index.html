@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WidgetSystemKit - SwiftUI Widget System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">🎯</span>
+                <span class="logo-text">WidgetSystemKit</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#quick-start">Quick Start</a></li>
+                <li><a href="#documentation">Docs</a></li>
+                <li><a href="#examples">Examples</a></li>
+                <li><a href="https://github.com/dimzfresh/WidgetSystemKit" target="_blank">GitHub</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Build Modular SwiftUI Widgets
+                    <span class="gradient-text">with Ease</span>
+                </h1>
+                <p class="hero-subtitle">
+                    A powerful SwiftUI widget system for creating modular, reusable UI components 
+                    with event-driven communication and state management.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#quick-start" class="btn btn-primary">Get Started</a>
+                    <a href="https://github.com/dimzfresh/WidgetSystemKit" target="_blank" class="btn btn-secondary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        View on GitHub
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="code-preview">
+                    <div class="code-header">
+                        <div class="code-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <span class="code-title">WidgetSystemKit.swift</span>
+                    </div>
+                    <pre><code class="language-swift">
+struct TextWidget: AnyWidget {
+    @Published var state: TextWidgetState
+    
+    var body: some View {
+        Text(state.text)
+            .font(.system(size: state.fontSize))
+            .onTapGesture {
+                sendWidgetEvent(.didTap)
+            }
+    }
+}
+                    </code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Why WidgetSystemKit?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧩</div>
+                    <h3>Modular Architecture</h3>
+                    <p>Create reusable widgets with encapsulated state and behavior. Build complex UIs from simple, composable components.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Event-Driven</h3>
+                    <p>Widgets communicate through typed events using Combine. Clean separation of concerns with reactive programming.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎛️</div>
+                    <h3>State Management</h3>
+                    <p>Built-in state management with visibility controls. Show, hide, or disable widgets with smooth animations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏭</div>
+                    <h3>Factory Pattern</h3>
+                    <p>Create and configure widgets using the factory pattern. Easy to extend and maintain.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Animation Support</h3>
+                    <p>Smooth transitions when showing/hiding widgets. Customizable animations for better UX.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Type Safety</h3>
+                    <p>Generic types ensure compile-time safety. Catch errors early with strong typing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Start Section -->
+    <section id="quick-start" class="quick-start">
+        <div class="container">
+            <h2 class="section-title">Quick Start</h2>
+            <div class="quick-start-content">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Install WidgetSystemKit</h3>
+                        <pre><code class="language-swift">
+dependencies: [
+    .package(url: "https://github.com/dimzfresh/WidgetSystemKit.git", from: "1.0.0")
+]
+                        </code></pre>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Create a Widget</h3>
+                        <pre><code class="language-swift">
+struct TextWidget: AnyWidget {
+    @Published var state: TextWidgetState
+    
+    var body: some View {
+        Text(state.text)
+            .font(.system(size: state.fontSize))
+            .onTapGesture {
+                sendWidgetEvent(.didTap)
+            }
+    }
+}
+                        </code></pre>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Use in Your App</h3>
+                        <pre><code class="language-swift">
+struct HomeView: View {
+    @StateObject private var viewModel = HomeViewModel()
+    
+    var body: some View {
+        ForEach(viewModel.widgets) { widget in
+            WidgetItemContainer(widget: widget) {
+                $0.view()
+            }
+        }
+    }
+}
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Examples Section -->
+    <section id="examples" class="examples">
+        <div class="container">
+            <h2 class="section-title">Examples</h2>
+            <div class="examples-grid">
+                <div class="example-card">
+                    <h3>Profile Widget</h3>
+                    <p>A complete profile screen with multiple widgets</p>
+                    <div class="example-preview">
+                        <div class="widget-demo">
+                            <div class="widget-item">👤 Profile</div>
+                            <div class="widget-item">📊 Stats</div>
+                            <div class="widget-item">⚙️ Settings</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <h3>Dashboard Widget</h3>
+                    <p>Interactive dashboard with real-time updates</p>
+                    <div class="example-preview">
+                        <div class="widget-demo">
+                            <div class="widget-item">📈 Chart</div>
+                            <div class="widget-item">📋 List</div>
+                            <div class="widget-item">🔔 Notifications</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>WidgetSystemKit</h3>
+                    <p>A powerful SwiftUI widget system for building modular, reusable UI components.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#quick-start">Quick Start</a></li>
+                        <li><a href="#examples">Examples</a></li>
+                        <li><a href="https://github.com/dimzfresh/WidgetSystemKit">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Requirements</h4>
+                    <ul>
+                        <li>iOS 16.0+</li>
+                        <li>Swift 6.0+</li>
+                        <li>Xcode 15.0+</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 WidgetSystemKit. MIT License.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
